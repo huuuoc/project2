@@ -264,6 +264,7 @@ function twentyfourteen_scripts() {
 	}
 
 	wp_enqueue_script( 'twentyfourteen-script', get_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '20150315', true );
+	wp_enqueue_script( 'twentyfourteen-custom-tab-home', get_template_directory_uri() . '/js/custom-tab-home.js', array( 'jquery' ), '20150315', true );
 }
 add_action( 'wp_enqueue_scripts', 'twentyfourteen_scripts' );
 

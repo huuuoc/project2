@@ -820,8 +820,9 @@ span + .edit-link:before,
 
 .site {
 	background-color: #fff;
-	max-width: 1260px;
+	max-width: 1140px;
 	position: relative;
+	margin: 0 auto;
 }
 
 .main-content {
@@ -852,10 +853,19 @@ span + .edit-link:before,
 	width: 100%;
 	z-index: 4;
 }
+.home .site-header {
+	background-color: #fff;
+	max-width: none;
+	position: relative;
+	width: 100%;
+	margin-bottom: 37px;
+	z-index: 4;
+}
 
 .header-main {
 	min-height: 48px;
 	padding: 0 10px;
+	background: #000;
 }
 
 .site-title {
@@ -877,6 +887,99 @@ span + .edit-link:before,
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+}
+/*#container*/
+#container{
+	width: 100%;
+	float: left;
+}
+.col-1{
+	width: 33.33%;
+	float: left;
+}
+.col-2{
+	width: 66.66%;
+	float: left;
+}
+
+.col-2 .tab-link,
+.list-products {
+	list-style: none;
+	margin: 0;
+	padding-left: 10px;
+}
+	
+.col-2 .tab-link li{
+	display: inline-block;
+	padding-right: 20px;
+}
+.col-2 .tab-link li:last-child{
+	text-align: right;
+}
+.tab-detail{
+	display: none;
+}
+.tab-detail.active{
+	display: block;
+}
+.tab-detail.active article:first-child{
+	width: 50%;
+	float: left;
+}
+.tab-detail.active article{
+	overflow:hidden;
+}
+.tab-detail.active article .content-article
+{
+	padding-left: 10px;
+}
+article .content-article h3{
+	margin: 0;
+	font-size: 16px;
+}
+article  .desc-title{
+	overflow: hidden;
+	padding-left: 10px;
+}
+
+.tab-detail.active article img {
+	width: 80px;
+	height: 50px;
+	float: left;
+}
+.tab-detail.active article .desc-article {
+	display: none;
+}
+.tab-detail.active article:first-child .desc-article {
+	display: block;
+}
+
+.tab-detail.active article:first-child img{
+	width: 100%;
+	height: auto;
+}
+
+.list-products li{
+	border: 1px solid #ccc;
+	margin-bottom: 10px; 
+	float: left;
+	width: 100%;
+}
+.list-products .info-product{
+	padding: 5px;
+}
+.home .post-thumbnail{
+	background: none;
+	float: left;
+	width: 150px;
+}
+.content-product{
+	display: inline-block;
+	padding-left: 10px;
+}
+.content-product .name-product{
+	margin: 0;
+	font-size: 18px;
 }
 
 /* Search in the header */
@@ -3510,7 +3613,7 @@ a.post-thumbnail:hover {
 
 	.primary-navigation a {
 		display: inline-block;
-		padding: 0 12px;
+		padding: 0 6px;
 		white-space: nowrap;
 	}
 
@@ -3728,6 +3831,18 @@ a.post-thumbnail:hover {
 		top: 0;
 		left: 0;
 		width: 182px;
+		z-index: 2;
+	}
+	.home .site:before {
+		background-color: none;
+		content: "";
+		display: block;
+		height: 100%;
+		min-height: 100%;
+		position: static;
+		top: 0;
+		left: 0;
+		width: auto;
 		z-index: 2;
 	}
 
@@ -4056,6 +4171,9 @@ a.post-thumbnail:hover {
 
 	.site:before {
 		width: 222px;
+	}
+	.home  .site:before {
+		width: auto;
 	}
 
 	.search-box-wrapper,

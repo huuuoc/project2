@@ -12,7 +12,6 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php twentyfourteen_post_thumbnail(); ?>
-
 	<header class="entry-header">
 		<?php if ( in_array( 'category', get_object_taxonomies( get_post_type() ) ) && twentyfourteen_categorized_blog() ) : ?>
 		<div class="entry-meta">
@@ -30,7 +29,7 @@
 
 		<div class="entry-meta">
 			<?php
-				if ( 'post' == get_post_type() )
+				if ('post' == get_post_type())
 					twentyfourteen_posted_on();
 
 				if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) :

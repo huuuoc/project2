@@ -53,8 +53,11 @@
 				<a class="screen-reader-text skip-link" href="#content"><?php _e( 'Skip to content', 'twentyfourteen' ); ?></a>
 				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu', 'menu_id' => 'primary-menu' ) ); ?>
 			</nav>
+			<div class="header-slide">
+				<?php echo do_shortcode('[wonderplugin_slider id=1]'); ?>
+			</div>
 		</div>
-
+		
 		<div id="search-container" class="search-box-wrapper hide">
 			<div class="search-box">
 				<?php get_search_form(); ?>
