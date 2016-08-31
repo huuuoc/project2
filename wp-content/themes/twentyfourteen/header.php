@@ -42,7 +42,7 @@
 
 	<header id="masthead" class="site-header" role="banner">
 		<div class="header-main">
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php // bloginfo( 'name' ); ?></a></h1>
 
 			<div class="search-toggle">
 				<a href="#search-container" class="screen-reader-text" aria-expanded="false" aria-controls="search-container"><?php _e( 'Search', 'twentyfourteen' ); ?></a>
@@ -53,16 +53,17 @@
 				<a class="screen-reader-text skip-link" href="#content"><?php _e( 'Skip to content', 'twentyfourteen' ); ?></a>
 				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu', 'menu_id' => 'primary-menu' ) ); ?>
 			</nav>
-			<div class="header-slide">
-				<?php echo do_shortcode('[wonderplugin_slider id=1]'); ?>
+			<div id="search-container" class="search-box-wrapper hide">
+				<div class="search-box">
+					<?php get_search_form(); ?>
+				</div>
 			</div>
+		</div>
+		<div class="header-slide">
+			<?php echo do_shortcode('[wonderplugin_slider id=1]'); ?>
 		</div>
 		
-		<div id="search-container" class="search-box-wrapper hide">
-			<div class="search-box">
-				<?php get_search_form(); ?>
-			</div>
-		</div>
+		
 	</header><!-- #masthead -->
 
 	<div id="main" class="site-main">

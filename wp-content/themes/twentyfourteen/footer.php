@@ -9,10 +9,64 @@
  * @since Twenty Fourteen 1.0
  */
 ?>
+			<?php
+				$args_my_query = array(
+					'category__in' => array(9,10,11),
+					'orderby' => 'ASC'
+				);
+				$my_query = new WP_Query( $args_my_query );
+				
+				if ( $my_query->have_posts()) :
+					$mienBac = '';
+					$mienTrung = '';
+					$mienNam = '';
+					while ( $my_query->have_posts() ) : $my_query->the_post();
+						if(get_the_category()[0]->cat_ID == 9){
+							$mienBac .= '<li><a href="'.get_permalink().'" title="'.get_the_title().'">'.get_the_title().'</a></li>';
+						}
+						if(get_the_category()[0]->cat_ID == 10){
+							$mienTrung .= '<li><a href="'.get_permalink().'" title="'.get_the_title().'">'.get_the_title().'</a></li>';
+						}
+						if(get_the_category()[0]->cat_ID == 11){
+							$mienNam .= '<li><a href="'.get_permalink().'" title="'.get_the_title().'">'.get_the_title().'</a></li>';
+						}
+					endwhile;
+				endif;
+			?>
 			<div class="agency">
-				<div class="col-1">col-1</div>	
-				<div class="col-1">col-2</div>	
-				<div class="col-1">col-3</div>	
+				<div class="col-1">
+					<div class="agency-block">
+						<h3><span>Miền Bắc</span> <span class="f-right show-agency"> > </span></h3>
+						<img src="<?php echo  wp_upload_dir('2016/08')['url']; ?>/2.TayBacBo.png"  atl="Miền Bắc" width="100%"/>
+						<div class="list-agency">
+							<ul>
+								<?php echo $mienBac; ?>
+							</ul>
+						</div>
+					</div>
+				</div>	
+				<div class="col-1">
+					<div class="agency-block">
+						<h3><span>Miền Trung</span> <span class="f-right show-agency"> > </span></h3>
+						<img src="<?php echo  wp_upload_dir('2016/08')['url']; ?>/2.TayBacBo.png"  atl="Miền Bắc" width="100%"/>
+						<div  class="list-agency">
+							<ul>
+								<?php echo $mienTrung; ?>
+							</ul>
+						</div>
+					</div>
+				</div>	
+				<div class="col-1">
+					<div class="agency-block">
+						<h3><span>Miền Nam</span> <span class="f-right show-agency"> > </span></h3>
+						<img src="<?php echo  wp_upload_dir('2016/08')['url']; ?>/2.TayBacBo.png"  atl="Miền Bắc" width="100%" />
+						<div class="list-agency">
+							<ul>
+								<?php echo $mienNam; ?>
+							</ul>
+						</div>
+					</div>
+				</div>	
 			</div>
 		</div><!-- #main -->
 

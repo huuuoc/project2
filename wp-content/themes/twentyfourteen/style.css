@@ -13,7 +13,6 @@ Text Domain: twentyfourteen
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
-
 /**
  * Table of Contents:
  *
@@ -820,7 +819,7 @@ span + .edit-link:before,
 
 .site {
 	background-color: #fff;
-	max-width: 1140px;
+	max-width: 1000px;
 	position: relative;
 	margin: 0 auto;
 }
@@ -828,7 +827,9 @@ span + .edit-link:before,
 .main-content {
 	width: 100%;
 }
-
+.amazingslider-title-1{
+	color: #77973a;
+}
 
 /**
  * 4.0 Header
@@ -848,7 +849,7 @@ span + .edit-link:before,
 
 .site-header {
 	background-color: #000;
-	max-width: 1260px;
+	max-width: 1000px;
 	position: relative;
 	width: 100%;
 	z-index: 4;
@@ -866,6 +867,9 @@ span + .edit-link:before,
 	min-height: 48px;
 	padding: 0 10px;
 	background: #000;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 0!important;
 }
 
 .site-title {
@@ -980,6 +984,72 @@ article  .desc-title{
 .content-product .name-product{
 	margin: 0;
 	font-size: 18px;
+}
+
+/*Dai Ly*/
+.f-right{
+	float: right;
+}
+.p-fixed{
+	position: fixed;
+	top: 32px;
+	right: 0;
+	left:0;
+	z-index: 99999;
+}
+.agency{
+	float: left;
+	width: 100%;
+	margin-bottom: 30px;
+}
+.agency h3{
+	margin: 0;
+	text-align: center;
+	background: #24890d;
+	line-height: 35px;
+	color: #fff;
+	font-size: 20px; 
+	cursor: pointer;
+}
+.agency .active h3{
+	background: #ccc;
+}
+
+.agency .agency-block{
+	margin: 0 15px;
+	border: 1px solid #ccc;
+	position: relative;
+}
+.agency  ul{
+	margin: 0;
+	float: left;
+	width: 100%;
+}
+.agency  ul li{
+	border-top: 1px solid #dfdfdf;
+	float: left;
+    line-height: 20px;
+    list-style: outside none none;
+    min-width: 33.33%;
+	background: #dfdfdf;
+	text-align: center;
+	font-size: 13px;
+}
+.list-agency{
+	position: absolute;
+	top: 35px;
+	left: 0;
+	right:0;
+	display: none;
+}
+
+.agency  ul li a{
+	background : url(images/angency.png) repeat-x;
+	padding: 3px 10px;
+	color: #111;
+	font-size: 13px;
+	display: block;
+	margin-left: 1px;
 }
 
 /* Search in the header */
