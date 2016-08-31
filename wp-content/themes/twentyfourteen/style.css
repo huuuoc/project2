@@ -13,6 +13,7 @@ Text Domain: twentyfourteen
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
+
 /**
  * Table of Contents:
  *
@@ -828,7 +829,11 @@ span + .edit-link:before,
 	width: 100%;
 }
 .amazingslider-title-1{
-	color: #77973a;
+	color: #77973a!important;
+}
+.amazingslider-text-1{
+	text-align: center!important;
+	right: 0;
 }
 
 /**
@@ -841,7 +846,15 @@ span + .edit-link:before,
 #wpadminbar {
 	min-height: 32px;
 }
-
+header#masthead{
+	position: relative;
+}
+.site-title{
+	position: absolute;
+	top: 40px;
+	left: 25px;
+	z-index: 999;
+}
 #site-header {
 	position: relative;
 	z-index: 3;
@@ -864,9 +877,9 @@ span + .edit-link:before,
 }
 
 .header-main {
-	min-height: 48px;
+	min-height: 50px;
 	padding: 0 10px;
-	background: #000;
+	background: #4f6426;
 	max-width: 1000px;
 	margin: 0 auto;
 	padding: 0!important;
@@ -940,6 +953,7 @@ span + .edit-link:before,
 article .content-article h3{
 	margin: 0;
 	font-size: 16px;
+	font-family: "Myriad Pro";
 }
 article  .desc-title{
 	overflow: hidden;
@@ -996,6 +1010,13 @@ article  .desc-title{
 	right: 0;
 	left:0;
 	z-index: 99999;
+}
+.amazingslider-box-1{
+	margin-left: 0!important;
+	border: none!important;
+}
+.amazingslider-text-wrapper-1{
+	right: 0;
 }
 .agency{
 	float: left;
@@ -1058,7 +1079,7 @@ article  .desc-title{
 	background-color: #24890d;
 	cursor: pointer;
 	float: right;
-	height: 48px;
+	height: 50px;
 	margin-right: 38px;
 	text-align: center;
 	width: 48px;
@@ -3676,8 +3697,8 @@ a.post-thumbnail:hover {
 	.primary-navigation li {
 		border: 0;
 		display: inline-block;
-		height: 48px;
-		line-height: 48px;
+		height: 50px;
+		line-height: 50px;
 		position: relative;
 	}
 

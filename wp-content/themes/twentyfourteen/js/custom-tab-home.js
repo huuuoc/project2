@@ -34,7 +34,7 @@
 		$('.list-agency').slideUp('medium');
 	});
 	$(window).scroll(function(){
-		if($(this).scrollTop() > 50){
+		if($(this).scrollTop() > 400){
 			$('.header-main').addClass('p-fixed');
 		}else{
 			$('.header-main').removeClass('p-fixed');
