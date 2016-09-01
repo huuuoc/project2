@@ -4,6 +4,7 @@
  * Contains handlers to make Customizer preview reload changes asynchronously.
  */
 ( function( $ ) {
+	//Tab home
 	$('.tab-link li').click(function(){
 		if (!$(this).hasClass('active')) {
 			var id = $(this).attr('item');
@@ -13,7 +14,7 @@
 			$('.tab-content '+id).addClass('active'); 
 		}
 	});
-	
+	// Dai ly footer
 	$('.agency-block h3').click(function(e){
 		if (!$(this).parent().hasClass('active')) {
 			$('.agency-block.active').removeClass('active');
@@ -33,11 +34,13 @@
 		$('.agency-block.active').removeClass('active');
 		$('.list-agency').slideUp('medium');
 	});
+	
+	//Menu main 
 	$(window).scroll(function(){
 		if($(this).scrollTop() > 400){
-			$('.header-main').addClass('p-fixed');
+			$('#primary-navigation').addClass('p-fixed');
 		}else{
-			$('.header-main').removeClass('p-fixed');
+			$('#primary-navigation').removeClass('p-fixed');
 		}
 	});
 	

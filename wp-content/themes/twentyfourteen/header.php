@@ -43,15 +43,9 @@
 	<header id="masthead" class="site-header" role="banner">
 		<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo  wp_upload_dir('2016/08')['url']; ?>/logo.png"  atl="Nấm lim xanh" /></a></h1>
 		<div class="header-main">
-			<div class="search-toggle">
+			<!--<div class="search-toggle">
 				<a href="#search-container" class="screen-reader-text" aria-expanded="false" aria-controls="search-container"><?php _e( 'Search', 'twentyfourteen' ); ?></a>
-			</div>
-
-			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
-				<button class="menu-toggle"><?php _e( 'Primary Menu', 'twentyfourteen' ); ?></button>
-				<a class="screen-reader-text skip-link" href="#content"><?php _e( 'Skip to content', 'twentyfourteen' ); ?></a>
-				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu', 'menu_id' => 'primary-menu' ) ); ?>
-			</nav>
+			</div>-->
 			<div id="search-container" class="search-box-wrapper hide">
 				<div class="search-box">
 					<?php get_search_form(); ?>
@@ -61,8 +55,11 @@
 		<div class="header-slide">
 			<?php echo do_shortcode('[wonderplugin_slider id=1]'); ?>
 		</div>
-		
-		
+		<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+			<button class="menu-toggle"><?php _e( 'Primary Menu', 'twentyfourteen' ); ?></button>
+			<a class="screen-reader-text skip-link" href="#content"><?php _e( 'Skip to content', 'twentyfourteen' ); ?></a>
+			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu', 'menu_id' => 'primary-menu' ) ); ?>
+		</nav>
 	</header><!-- #masthead -->
 
 	<div id="main" class="site-main">
