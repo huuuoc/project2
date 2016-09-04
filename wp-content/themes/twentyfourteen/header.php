@@ -28,6 +28,15 @@
 	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
 	<![endif]-->
 	<?php wp_head(); ?>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.7&appId=1430588073931924";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	</script>
 </head>
 
 <body <?php body_class(); ?>>
@@ -41,11 +50,20 @@
 	<?php endif; ?>
 
 	<header id="masthead" class="site-header" role="banner">
-		<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo  wp_upload_dir('2016/08')['url']; ?>/logo.png"  atl="Nấm lim xanh" /></a></h1>
+		<?php if ( is_front_page() && is_home() ) : ?>
+			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo  wp_upload_dir('2016/09')['url']; ?>/logo-new.png"  atl="Nấm lim xanh" /></a></h1>
+		<?php else : ?>
+			<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo  wp_upload_dir('2016/09')['url']; ?>/logo-new.png"  atl="Nấm lim xanh" /></a></p>
+		<?php endif;?>
+		
 		<div class="header-main">
-			<!--<div class="search-toggle">
-				<a href="#search-container" class="screen-reader-text" aria-expanded="false" aria-controls="search-container"><?php _e( 'Search', 'twentyfourteen' ); ?></a>
-			</div>-->
+			<div class="slogan-site">
+				<span class="slogan-name">Sản phẩm nấm lim xanh của công ty tnhh nông lâm sản tiên phước là thương hiệu độc quyền chính hãng</span>
+				<span class="hotline">Hotline : 04.3797.0138</span>
+				<div class="search-toggle">
+					<a href="#search-container" class="screen-reader-text" aria-expanded="false" aria-controls="search-container"><?php _e( 'Search', 'twentyfourteen' ); ?></a>
+				</div>
+			</div>
 			<div id="search-container" class="search-box-wrapper hide">
 				<div class="search-box">
 					<?php get_search_form(); ?>

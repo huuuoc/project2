@@ -118,7 +118,7 @@ a {
 }
 
 a:focus {
-	outline: thin dotted;
+	outline: 0;
 }
 
 a:hover,
@@ -616,7 +616,7 @@ span > iframe,
 span > object {
 	margin-bottom: 0;
 }
-/*Fonts*/
+/*Fonts
 @font-face {
   font-family: 'Times New Roman';
   src: url('fonts/TimesNewRoman/TimesNewRomanPSMT.woff') format('woff'),
@@ -625,6 +625,16 @@ span > object {
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+	font-family: 'Times New Roman';
+	src: url('fonts/TimesNewRoman/timesbd.eot');
+	src: local('☺'),
+	url('fonts/TimesNewRoman/timesbd.woff') format('woff'),
+	url('fonts/TimesNewRoman/timesbd.ttf') format('truetype'),
+	url('fonts/TimesNewRoman/timesbd.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}*/
 @font-face {
   font-family: 'MyriadPro';
   src: url('fonts/MyriadPro/MyriadPro-Regular.eot');
@@ -871,6 +881,7 @@ span + .edit-link:before,
 
 /* Ensure that there is no gap between the header and
 	 the admin bar for WordPress versions before 3.8. */
+
 #wpadminbar {
 	min-height: 32px;
 }
@@ -879,7 +890,7 @@ header#masthead{
 }
 .site-title{
 	position: absolute;
-	top: 40px;
+	top: 30px;
 	left: 25px;
 	z-index: 999;
 }
@@ -903,14 +914,27 @@ header#masthead{
 	margin-bottom: 25px;
 	z-index: 4;
 }
-
+.slogan-site{
+	font-family: Arial;
+	color: #fff;
+}
+.slogan-name{
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-family: Arial!important;
+}
+.hotline{
+	margin-left: 28px;
+	font-weight: nomal;
+	font-size: 12px;
+	background: url(images/bg-hotline.png) no-repeat center left;
+	padding-left: 14px;
+}
 .header-main {
-	min-height: 50px;
 	padding: 0 10px;
 	background: #4f6426;
-	max-width: 1000px;
-	margin: 0 auto;
-	padding: 0!important;
+	line-height: 38px;
 }
 
 .site-title {
@@ -933,13 +957,42 @@ header#masthead{
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+/*Back to top*/
+
+#back-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 9999;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    line-height: 30px;
+	background: #f5f5f5;
+    color: #444;
+    cursor: pointer;
+    border: 0;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: opacity 0.2s ease-out;
+    opacity: 0;
+}
+#back-to-top:hover {
+    background: #e9ebec;
+}
+#back-to-top.show {
+    opacity: 1;
+}
+
 /*#container*/
 #container{
 	margin-left: 25px;
 	float: left;
 }
 .home .agency{
-	
+	float: left;
+	width: 100%;
+	margin-bottom: 25px;
 }
 .col-1{
 	width: 33.33%;
@@ -956,14 +1009,19 @@ header#masthead{
 }
 .col-2 .tab-link  li{
 	list-style: none;
-	font-family: "MyriadPro","Times New Roman";
-	font-weight: nomal;
-	font-size: 15px;
+	font-family: "MyriadPro";
+	font-weight: 300;
+	font-size: 14px;
 	text-transform: uppercase;
 	color: #444545;
 	display: inline-block;
 	padding-right: 12px;
 	line-height: 16px;
+	cursor: pointer;
+}
+.col-2 .tab-link  li:hover{
+	color: #559342;
+	font-weight: bold;
 }
 .col-2 .tab-link  li:last-child{
 	padding-right: 0;
@@ -988,11 +1046,16 @@ header#masthead{
 	display: none;
 }
 .tab-detail.active{
-	display: block;
+	display: inline-block;
 }
 .tab-detail.active article:first-child{
 	width: 50%;
 	float: left;
+}
+.tab-detail.active article:first-child .post-image{
+	display: inline-block;
+	padding: 2px;
+	border: 1px solid #ccc;
 }
 .tab-detail.active article{
 	overflow:hidden;
@@ -1003,12 +1066,16 @@ header#masthead{
 }
 article .content-article h3{
 	margin: 0;
-	font-size: 16px;
-	font-family: "Myriad Pro";
+	font-size: 15px;
+	font-family: "MyriadPro";
+	padding: 0 0 5px 0;
+}
+article .content-article h3 a{
+	color: #559342;
 }
 article  .desc-title{
 	overflow: hidden;
-	padding-left: 10px;
+	padding-top: 5px;
 }
 
 .tab-detail.active article img {
@@ -1035,7 +1102,7 @@ article  .desc-title{
 	background: url(images/bg_sp.png) no-repeat center center;
 }
 .list-products .info-product{
-	padding: 5px;
+	padding: 10px 10px 15px;
 	border: 1px solid #ccc;
 }
 .home .post-thumbnail{
@@ -1047,19 +1114,43 @@ article  .desc-title{
 .content-product{
 	overflow: hidden;
 	padding-left: 10px;
+	font: bold 18px "Times New Roman";
 }
 .content-product .name-product{
 	margin: 0;
-	font-size: 18px;
+	font-size: 17px;
+}
+.list-products #post-19 .name-product a{
+	font-size: 16px;
+}
+.price-product{
+	color: #d63307;
+	padding: 0 0 5px;
+}
+.type-product{
+	color: #131212;
+	padding: 5px 0;
+}
+.more-show{
+	font: Italic 12px "Arial";
+	background: url(images/bg-more-show.png) repeat-x center center;
+	line-height: 20px;
+	display: inline-block;
+	padding: 0 5px;
+	border-radius: 10px;
+	color: #000;
 }
 
 /*Dai Ly*/
 .f-right{
 	float: right;
 }
+.admin-bar .p-fixed{
+	top: 32px;
+}
 .p-fixed{
 	position: fixed;
-	top: 32px;
+	top: 0px;
 	right: 0;
 	left:0;
 	z-index: 99999;
@@ -1072,27 +1163,54 @@ article  .desc-title{
 	right: 0;
 	bottom: 30px!important;
 }
-.agency{
-	float: left;
+.agency .block-daily{
 	margin: 0 0 30px 25px;
+}
+.agency .block-daily .image-daily img{
+	object-fit: cover;
 }
 .agency h3{
 	margin: 0;
 	text-align: center;
-	background: #24890d;
+	background: url(images/bg-daily.png) repeat-x center center;
 	line-height: 35px;
 	color: #fff;
-	font-size: 20px; 
 	cursor: pointer;
 }
+.agency h3 span{
+	font-family:"Times New Roman";
+	font-size: 18px;
+	line-height: 18px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.agency h3 span::after{
+	border-color: rgb(250, 250, 250) transparent transparent ;
+    border-style: solid;
+    border-width: 8px;
+    content: "";
+    display: block;
+    right: 7px;
+    margin-left: -10px;
+    position: absolute;
+    top: 13px;
+}
+.agency .active h3 span::after{
+	border-color:  transparent transparent rgb(250, 250, 250);
+	top: 6px;
+}
+	
 .agency .active h3{
-	background: #ccc;
+	background: url(images/bg-daily-active.png) repeat-x center center;
 }
 
 .agency .agency-block{
-	border: 1px solid #ccc;
 	position: relative;
 	margin-right: 25px;
+}
+.agency .agency-block .image-daily{
+	border: 1px solid #ccc;
+	border-top: 0;
 }
 .agency  ul{
 	margin: 0;
@@ -1132,7 +1250,7 @@ article  .desc-title{
 	background-color: #24890d;
 	cursor: pointer;
 	float: right;
-	height: 50px;
+	height: 40px;
 	margin-right: 38px;
 	text-align: center;
 	width: 48px;
@@ -1147,7 +1265,7 @@ article  .desc-title{
 	color: #fff;
 	content: "\f400";
 	font-size: 20px;
-	margin-top: 14px;
+	margin-top: 10px;
 }
 
 .search-toggle .screen-reader-text {
@@ -1159,7 +1277,7 @@ article  .desc-title{
 	-moz-box-sizing:    border-box;
 	box-sizing:         border-box;
 	position: absolute;
-	top: 48px;
+	top: 40px;
 	right: 0;
 	width: 100%;
 	z-index: 2;
@@ -1206,9 +1324,15 @@ article  .desc-title{
 	font-weight: nomal;
 }
 .site-navigation ul.nav-menu > li > a {
-	font-size: 12px;
+	font-size: 13px;
 	text-transform: uppercase;
 	font-weight: bold;
+}
+.site-navigation ul.nav-menu > li{
+	background: url(images/border-main-menu.png) no-repeat center right;
+}
+.site-navigation ul.nav-menu > li:last-child{
+	background: transparent;
 }
 
 .site-navigation a:hover {
@@ -1245,7 +1369,26 @@ article  .desc-title{
 .primary-navigation.toggled-on .nav-menu {
 	display: block;
 }
+.primary-navigation ul li > ul{
+	/*transform: scale(0, 0);
+	transform-origin: 0 0 0;
+    transition: -moz-transform 0.4s ease 0s, opacity 0.4s ease 0s;
+    z-index: 1000;*/
+}
+ 
 
+.primary-navigation ul li ul::before{
+	/*border-color: transparent transparent rgb(250, 250, 250);
+    border-style: solid;
+    border-width: 10px;
+    content: "";
+    display: block;
+    left: 50%;
+    margin-left: -10px;
+    position: absolute;
+    top: -20px;*/
+}	
+	
 .primary-navigation a {
 	padding: 7px 0;
 	font-family: "Times New Roman";
@@ -3074,12 +3217,19 @@ a.post-thumbnail:hover {
 }
 
 .site-footer {
-	background-color: #000;
+	max-width: 1000px;
+	margin: 0 auto;
+	background: #4f6426;
 	font-size: 12px;
 	position: relative;
+	
 	z-index: 3;
 }
-
+.footer-container p{
+	margin: 0 0 5px;
+	clear: both;
+	font-size: 14px;
+}
 .footer-sidebar {
 	padding-top: 48px;
 }
@@ -3095,8 +3245,102 @@ a.post-thumbnail:hover {
 .site-info a:hover {
 	color: #41a62a;
 }
+/*Footer*/
+.footer-container{
+	font-family: MyriadPro;
+	color: #fff;
+	float: left;
+	width: 100%;
+}
+.footer-container .footer{
+	padding: 25px;
+	overflow: hidden;
+}
+.info-company{
+	width: 50%;
+	float: left;
+}
+.info-company p{
+	padding-left: 15px;
+}
+.info-company p a{
+	color:#fff;
+}
+.info-company p a:hover{
+	color:#559342;
+}
+.info-company .address{
+	background: url(images/address.png) no-repeat center left;
+}
+.info-company .phone{
+	background: url(images/phone.png) no-repeat center left;
+}
+.info-company .email{
+	background: url(images/email.png) no-repeat center left;
+}
+.info-company .website{
+	background: url(images/website.png) no-repeat center left;
+}
+.footer-container .name-company{
+	padding-bottom: 5px;
+	text-transform: uppercase;
+	font-size: 18px;
+	border-bottom: 1px solid #fdfefc;
+	float: left;
+	line-height: 18px;
+	padding-left: 0;
+	margin-left: 15px;
+}
+.copyright{
+	clear: both;
+	text-align: center;
+	line-height: 49px;
+	border-top: 1px solid #ccc;
+	margin-top: 23px;
+	
+}
+.copyright p{
+	margin: 0;
+	font-family: "MyriadPro";
+	font-size: 12px;
+	font-weight: 600;
+}
+.conection{
+	float: left;
+	width: 50%;
+}
 
-
+.conect{
+	width: 50%;
+	float: left;
+}
+.facebook-page{
+	float: right;
+	width: 50%;
+}
+.social{
+	margin: 0;
+}
+.social li{
+	list-style: none;
+	float: left;
+	margin-right: 10px;
+}
+.conect h3{
+	font-size: 14px ;
+	font-family: Arial;
+	font-weight: 300;
+	float: left;
+	width: 100%;
+	margin:0 0 20px;
+}
+.conect h3 span{
+	border-bottom: 1px solid #fff;
+	float: left;
+}
+.conect h3.title-social {
+	margin: 38px 0 20px;
+}
 /**
  * 9.0 Featured Content
  * -----------------------------------------------------------------------------
@@ -3698,7 +3942,7 @@ a.post-thumbnail:hover {
 	}
 
 	.header-main {
-		padding-right: 0;
+		padding: 0 0 0 25px;
 	}
 
 	.search-toggle {
@@ -3751,6 +3995,7 @@ a.post-thumbnail:hover {
 	.primary-navigation .nav-menu {
 		border-bottom: 0;
 		display: block;
+		padding-left: 25px;
 	}
 
 	.primary-navigation.toggled-on {
@@ -3836,7 +4081,7 @@ a.post-thumbnail:hover {
 
 	.primary-navigation .menu-item-has-children > a:after,
 	.primary-navigation .page_item_has_children > a:after {
-		-webkit-font-smoothing: antialiased;
+		/*-webkit-font-smoothing: antialiased;
 		content: "\f502";
 		display: inline-block;
 		font: normal 8px/1 Genericons;
@@ -3844,6 +4089,7 @@ a.post-thumbnail:hover {
 		right: -2px;
 		top: 25px;
 		vertical-align: text-bottom;
+		*/
 	}
 
 	.primary-navigation li .menu-item-has-children > a,

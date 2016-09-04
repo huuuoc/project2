@@ -48,38 +48,40 @@
 				
 				if ( $my_query->have_posts() ) :
 					// Start the Loop.
-					$li = '';
+					$li1 = '';
+					$li2 = '';
+					$li3 = '';
 					$div1 = '';$check1 = 0;
 					$div2 = '';$check2 = 0;
 					$div3 = '';$check3 = 0;
 					while ( $my_query->have_posts() ) : $my_query->the_post();
 						if(get_the_category()[0]->cat_ID == 5){
 							if($check1==0){
-								$li .= '<li item="#tab'. get_the_category()[0]->cat_ID .'" class="active">'.get_the_category()[0]->name.'</li>';
+								$li1 .= '<li item="#tab'. get_the_category()[0]->cat_ID .'" class="active">'.get_the_category()[0]->name.'</li>';
 								$check1++;
 							}
-							$div1 .= '<article> <div class="content-article"><a href="'.get_permalink().'" title="">'. get_the_post_thumbnail().'</a> <div class="desc-title"><h3> <a href="'.get_permalink().'" title="'.get_the_title().'" >'.get_the_title().'</a></h3><p class="desc-article">'. get_the_excerpt().'</p></div></div></article>';
+							$div1 .= '<article> <div class="content-article"><a class="post-image" href="'.get_permalink().'" title="">'. get_the_post_thumbnail().'</a> <div class="desc-title"><h3> <a href="'.get_permalink().'" title="'.get_the_title().'" >'.get_the_title().'</a></h3><p class="desc-article">'. get_the_excerpt().'</p></div></div></article>';
 						}
 						if(get_the_category()[0]->cat_ID == 6){
 							if($check2==0){
-								$li .= '<li item="#tab'. get_the_category()[0]->cat_ID .'">'.get_the_category()[0]->name.'</li>';
+								$li2 .= '<li item="#tab'. get_the_category()[0]->cat_ID .'">'.get_the_category()[0]->name.'</li>';
 								$check2++;
 							}
-							$div2 .= '<article> <div class="content-article"><a href="'.get_permalink().'" title="">'. get_the_post_thumbnail().'</a><div class="desc-title"> <h3><a href="'.get_permalink().'" title="'.get_the_title().'">'.get_the_title().'</a></h3><p class="desc-article">'. get_the_excerpt().'</p></div></div></article>';
+							$div2 .= '<article> <div class="content-article"><a class="post-image" href="'.get_permalink().'" title="">'. get_the_post_thumbnail().'</a><div class="desc-title"> <h3><a href="'.get_permalink().'" title="'.get_the_title().'">'.get_the_title().'</a></h3><p class="desc-article">'. get_the_excerpt().'</p></div></div></article>';
 						}
 						if(get_the_category()[0]->cat_ID == 7){
 							if($check3==0){
-								$li .= '<li item="#tab'. get_the_category()[0]->cat_ID .'">'.get_the_category()[0]->name.'</li>';
+								$li3 .= '<li item="#tab'. get_the_category()[0]->cat_ID .'">'.get_the_category()[0]->name.'</li>';
 								$check3++;
 							}
-							$div3 .= '<article> <div class="content-article"><a href="'.get_permalink().'" title="">'. get_the_post_thumbnail() .'</a><div class="desc-title"><h3><a href="'.get_permalink().'" title="'.get_the_title().'">'.get_the_title().'</a></h3><p class="desc-article">'. get_the_excerpt().'</p></div></div></article>';
+							$div3 .= '<article> <div class="content-article"><a class="post-image" href="'.get_permalink().'" title="">'. get_the_post_thumbnail() .'</a><div class="desc-title"><h3><a href="'.get_permalink().'" title="'.get_the_title().'">'.get_the_title().'</a></h3><p class="desc-article">'. get_the_excerpt().'</p></div></div></article>';
 						}
 					endwhile;
 				endif;
 			?>
 		<div class="tab-home-page">
 			<ul class="tab-link">
-				<?php echo $li; ?>
+				<?php echo $li1,$li2,$li3; ?>
 			</ul>
 			<div class="tab-content">
 				<div id="tab5" class="tab-detail active">
@@ -95,7 +97,9 @@
 			</div>
 		</div>
 	</div>
-</div>
+	<div></div>
+	
+	</div>
 <?php // get_sidebar(); 
 	//get_sidebar( 'content' ); 
 //get_sidebar();
