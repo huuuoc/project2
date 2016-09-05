@@ -8,10 +8,13 @@
 	$('.tab-link li').click(function(){
 		if (!$(this).hasClass('active')) {
 			var id = $(this).attr('item');
-			$('.tab-link li.active').removeClass('active');
-			$('.tab-content .active').removeClass('active');
+			var tabLink = $(this).attr('tab-link');
+			var tabContent = $(this).attr('tab-content');
+			console.log(tabLink+' li.active');
+			$('.'+tabLink+' li.active').removeClass('active');
+			$('.'+tabContent+' .active').removeClass('active');
 			$(this).addClass('active'); 
-			$('.tab-content '+id).addClass('active'); 
+			$('.'+tabContent+' '+id).addClass('active'); 
 		}
 	});
 	// Dai ly footer
