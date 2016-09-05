@@ -12,7 +12,9 @@
 <?php
 	$args_products = array(
 		'category__in' => array(4),
-		'orderby' => 'ASC'
+		'orderby'   => 'meta_value_num',
+		'meta_key'  => 'price_products',
+		'order'   => 'ASC',
 	);
 	$my_query_products = new WP_Query( $args_products );
 ?>
@@ -29,6 +31,7 @@
 						}
 					endwhile;
 				endif;
+				wp_reset_postdata();
 			?>
 		</ul>
 	</div>
@@ -50,48 +53,59 @@
 					$div2 = '';$check2 = 0;
 					$div3 = '';$check3 = 0;
 					while ( $my_query_tab_home->have_posts() ) : $my_query_tab_home->the_post();
+						$title = get_the_excerpt();
 						if(get_the_category()[0]->cat_ID == 5){
-							$check1++;
 							if($check1 == 5){
 								continue;
 							}
 							if($check1==0){
 								$li1 .= '<li item="#tab'. get_the_category()[0]->cat_ID .'"  tab-link="tab-link1" tab-content="tab-content1"  class="active">'.get_the_category()[0]->name.'</li>';
+								cutTitle($title,86);
 							}else{
-								$li1 .= '<li item="#tab'. get_the_category()[0]->cat_ID .'"  tab-link="tab-link1" tab-content="tab-content1">'.get_the_category()[0]->name.'</li>';
+								cutTitle($title,65);
 							}
-							
-							$div1 .= '<article class="ar-'.$check1.'"> <div class="content-article"><a class="post-image" href="'.get_permalink().'" title="">'. get_the_post_thumbnail().'</a> <div class="desc-title"><h3> <a href="'.get_permalink().'" title="'.get_the_title().'" >'.get_the_title().'</a></h3><p class="desc-article">'. get_the_excerpt().'</p><a  class="more-show" href="'.get_permalink().'" title="Xem thêm">Xem thêm</a></div></div></article>';
-							
+							$div1 .= '<article class="ar-'.($check1+1).'"> <div class="content-article"><a class="post-image" href="'.get_permalink().'" title="">'. get_the_post_thumbnail().'</a> <div class="desc-title"><h3> <a href="'.get_permalink().'" title="'.get_the_title().'" >'.$title.'</a></h3><p class="desc-article">'. $title.'</p><a  class="more-show" href="'.get_permalink().'" title="Xem thêm">Xem thêm</a></div></div></article>';
+							$check1++;
 						}
 						if(get_the_category()[0]->cat_ID == 6){
-							$check2++;
 							if($check2 == 5){
 								continue;
 							}
-							$li2 .= '<li tab-link="tab-link1" tab-content="tab-content1"  item="#tab'. get_the_category()[0]->cat_ID .'">'.get_the_category()[0]->name.'</li>';
-							$div2 .= '<article class="ar-'.$check2.'"> <div class="content-article"><a class="post-image" href="'.get_permalink().'" title="">'. get_the_post_thumbnail().'</a><div class="desc-title"> <h3><a href="'.get_permalink().'" title="'.get_the_title().'">'.get_the_title().'</a></h3><p class="desc-article">'. get_the_excerpt().'</p><a class="more-show" href="'.get_permalink().'" title="Xem thêm">Xem thêm</a></div></div></article>';
-							
+							if($check2==0){
+								$li2 .= '<li tab-link="tab-link1" tab-content="tab-content1"  item="#tab'. get_the_category()[0]->cat_ID .'">'.get_the_category()[0]->name.'</li>';
+								cutTitle($title,86);
+							}else{
+								cutTitle($title,65);
+								$title="ccccccc";
+							}
+							$div2 .= '<article class="ar-'.($check2+1).'"> <div class="content-article"><a class="post-image" href="'.get_permalink().'" title="">'. get_the_post_thumbnail().'</a><div class="desc-title"> <h3><a href="'.get_permalink().'" title="'.get_the_title().'">'.get_the_title().'</a></h3><p class="desc-article">'. $title.'</p><a class="more-show" href="'.get_permalink().'" title="Xem thêm">Xem thêm</a></div></div></article>';
+							$check2++;
 						}
 						if(get_the_category()[0]->cat_ID == 7){
-							$check3++;
 							if($check2 == 5){
 								continue;
 							}
 							if($check3==0){
 								$li3 .= '<li tab-link="tab-link1" tab-content="tab-content1"  item="#tab'. get_the_category()[0]->cat_ID .'">'.get_the_category()[0]->name.'</li>';
-								
+								cutTitle($title,86);
+							}else{
+								cutTitle($title,65);
+								$title="ccccccc";
 							}
-							$div3 .= '<article class="ar-'.$check3.'"> <div class="content-article"><a class="post-image" href="'.get_permalink().'" title="">'. get_the_post_thumbnail() .'</a><div class="desc-title"><h3><a href="'.get_permalink().'" title="'.get_the_title().'">'.get_the_title().'</a></h3><p class="desc-article">'. get_the_excerpt().'</p><a class="more-show" href="'.get_permalink().'" title="Xem thêm">Xem thêm</a></div></div></article>';
-							
+							$div3 .= '<article class="ar-'.($check3+1).'"> <div class="content-article"><a class="post-image" href="'.get_permalink().'" title="">'. get_the_post_thumbnail() .'</a><div class="desc-title"><h3><a href="'.get_permalink().'" title="'.get_the_title().'">'.get_the_title().'</a></h3><p class="desc-article">'. $title.'</p><a class="more-show" href="'.get_permalink().'" title="Xem thêm">Xem thêm</a></div></div></article>';
+							$check3++;
 						}
 					endwhile;
 				endif;
+				wp_reset_postdata();
 			?>
 		<div class="tab-home-page block block-tab-main">
 			<div class="title-block">
 				<ul class="tab-link1 tab-link">
-					<?php echo $li1,$li2,$li3; ?>
+					<?php // echo $li1,$li2,$li3; ?>
+					<li class="active" tab-content="tab-content1" tab-link="tab-link1" item="#tab5">Công dụng nấm lim xanh</li>
+					<li tab-content="tab-content1" tab-link="tab-link1" item="#tab6">Cách dùng nấm lim xanh</li>
+					<li tab-content="tab-content1" tab-link="tab-link1" item="#tab7">Mua bán nấm lim xanh</li>
 				</ul>
 			</div>
 			<div class="content-block tab-content1 tab-content">
@@ -130,10 +144,8 @@
 										break;
 									}
 								$title = get_the_title();
-								if(isset($title{47}) && $checkFirst !=0){ 
-									$title = substr($title,0,44);
-									$title = substr($title,0,strripos($title,' ',0));
-									$title .= ' ...';
+								if($checkFirst !=0){ 
+									cutTitle($title,47);
 								}
 								$checkFirst++;
 								
@@ -147,12 +159,13 @@
 								}
 							endwhile;
 						endif;
+						wp_reset_postdata();
 					?>
 				</div>
 			</div>
 		</div>
 		<div class="col-1">
-			<div class="content-library block">
+			<div class="content-library block content-newspaper">
 				<div class="title-block">
 					<ul class="tab-link tab-link2">
 						<li item="#tab4" tab-link="tab-link2" tab-content="tab-content2" class="active"> Thư viện video </li>
@@ -163,12 +176,46 @@
 					<div id="tab4" class="active">
 						<iframe width="100%" height="203" src="https://www.youtube.com/embed/Sy4812bvBco" frameborder="0" allowfullscreen></iframe>
 					</div>
-					<div id="tab5">Thư viện ảnh</div>
+					<div id="tab5">
+						<?php
+							$args_grallery = array(
+								'category__in' => array(29),
+								'orderby' => 'ASC'
+							);
+							$checkFirst = 0;
+							$my_query_grallery = new WP_Query( $args_grallery );
+							$count29=0;
+							if ( $my_query_grallery->have_posts()) :
+								while ( $my_query_grallery->have_posts() ) : $my_query_grallery->the_post();
+									
+									if(get_the_category()[0]->cat_ID==29){
+										if($checkFirst==5){
+											break;
+										}
+									$title = get_the_title();
+									if($checkFirst !=0){ 
+										cutTitle($title,47);
+									}
+									$checkFirst++;
+									
+						?>
+										<article class="ar-<?php echo $count29?>">
+											<?php if($count29==0){twentyfourteen_post_thumbnail();}?>
+											<h3> <a title="<?php echo get_the_title()?>" href="<?php echo esc_url( get_permalink())?> " rel="bookmark"><?php echo $title ?></a></h3>
+										</article>
+						<?php
+							$count29++;
+									}
+								endwhile;
+							endif;
+							wp_reset_postdata();
+						?>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="col-1">
-			<div class="content-support block">
+			<div class="block-support block">
 				<div class="title-block">
 					<h2><span>Chăm sóc khách hàng</span></h2>
 				</div>

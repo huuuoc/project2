@@ -634,7 +634,7 @@ span > object {
 	url('fonts/TimesNewRoman/timesbd.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
-}*/
+}/
 @font-face {
   font-family: 'MyriadPro';
   src: url('fonts/MyriadPro/MyriadPro-Regular.eot');
@@ -645,6 +645,47 @@ span > object {
        url('fonts/MyriadPro/MyriadPro-Regular.eot?#iefix') format('embedded-opentype');
   font-weight: normal;
   font-style: normal;
+}*/
+
+/* font-family: "MyriadProRegular"; */
+@font-face {
+    font-family: "MyriadProRegular";
+    src: url("fonts/MyriadProRegular/MyriadProRegular.eot");
+    src: url("fonts/MyriadProRegular/MyriadProRegular.eot?#iefix")format("embedded-opentype"),
+    url("fonts/MyriadProRegular/MyriadProRegular.woff") format("woff"),
+    url("fonts/MyriadProRegular/MyriadProRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "MyriadProBold"; */
+@font-face {
+    font-family: "MyriadProBold";
+    src: url("fonts/MyriadProBold/MyriadProBold.eot");
+    src: url("fonts/MyriadProBold/MyriadProBold.eot?#iefix")format("embedded-opentype"),
+    url("fonts/MyriadProBold/MyriadProBold.woff") format("woff"),
+    url("fonts/MyriadProBold/MyriadProBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "TimesNewRomanRegular"; */
+@font-face {
+    font-family: "TimesNewRomanRegular";
+    src: url("fonts/TimesNewRomanRegular/TimesNewRomanRegular.eot");
+    src: url("fonts/TimesNewRomanRegular/TimesNewRomanRegular.eot?#iefix")format("embedded-opentype"),
+    url("fonts/TimesNewRomanRegular/TimesNewRomanRegular.woff") format("woff"),
+    url("fonts/TimesNewRomanRegular/TimesNewRomanRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "TimesNewRomanBold"; */
+@font-face {
+    font-family: "TimesNewRomanBold";
+    src: url("fonts/TimesNewRomanBold/TimesNewRomanBold.eot");
+    src: url("fonts/TimesNewRomanBold/TimesNewRomanBold.eot?#iefix")format("embedded-opentype"),
+    url("fonts/TimesNewRomanBold/TimesNewRomanBold.woff") format("woff"),
+    url("fonts/TimesNewRomanBold/TimesNewRomanBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
 }
 
 /* Alignment */
@@ -1007,32 +1048,33 @@ header#masthead{
 	line-height: 16px;
 	padding-bottom: 10px;
 }
-.col-2 .tab-link  li{
-	list-style: none;
-	font-family: "MyriadPro";
-	font-weight: 300;
-	font-size: 14px;
+.tab-link  li{
+	font-family: "MyriadProBold";
+	font-size: 16px;
 	text-transform: uppercase;
 	color: #444545;
-	display: inline-block;
-	padding-right: 12px;
+	float: left;
+	background: url(images/bg_tab_library.png) no-repeat center right;
+	padding: 0 10px 0 8px;
 	line-height: 16px;
 	cursor: pointer;
 }
-.col-2 .tab-link  li:hover{
-	color: #559342;
-	font-weight: bold;
+.tab-link  li:first-child{
+	padding-left: 0;
 }
-.col-2 .tab-link  li:last-child{
+.tab-link  li:last-child{
 	padding-right: 0;
+	background: none;
 }
-.col-2 .tab-link  li.active{
+.tab-link  li:hover{
+	color: #559342;
+}
+
+.tab-link  li.active{
 	color: #559342;
 	font-weight: bold;
 }
-.tab-home-page{
-	
-}
+
 #container .col-1 .list-products{
 	margin:0 25px 0 0;
 	list-style: none;
@@ -1094,7 +1136,7 @@ header#masthead{
 article .content-article h3{
 	margin: 0;
 	font-size: 15px;
-	font-family: "MyriadPro";
+	font-family: "TimesNewRomanBold";
 	padding: 0 0 5px 0;
 	text-align: left;
 }
@@ -1144,7 +1186,7 @@ article  .desc-title{
 .content-product{
 	overflow: hidden;
 	padding-left: 10px;
-	font: bold 18px "Times New Roman";
+	font: bold 18px "TimesNewRomanBold";
 }
 .content-product .name-product{
 	margin: 0;
@@ -1173,12 +1215,12 @@ article  .desc-title{
 /*Block*/
 .block h2{
 	margin: 0;
-	font-size: 17px;
+	font-size: 16px;
 }
 .block .title-block{
 	margin: 0 0 10px;
-	font-family: MyriadPro;
-	font-size: 17px;
+	font-family: "MyriadProBold";
+	font-size: 16.2px;
 	text-transform: uppercase;
 	font-weight: bold;
 	color: #559342;
@@ -1195,14 +1237,10 @@ article  .desc-title{
 .content-library li{
 	float: left;
 }
-.content-library li:first-child{
-	background: url(images/bg_tab_library.png) no-repeat center right;
-	padding-right: 10px;
-	margin-right: 8px;
-}
+
 /*Block newspaper*/
 .home .content-newspaper .ar-0 {
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 .home .content-newspaper .ar-0 .post-thumbnail{
 	display: block;
@@ -1225,6 +1263,7 @@ article  .desc-title{
 	line-height: 1.09091;
 	border-bottom: 0;
 	padding-top: 7px;
+	min-height: 32px;
 }
 .content-newspaper article:last-child h3{
 	border-bottom: 0;
@@ -1253,29 +1292,32 @@ article  .desc-title{
 	color: #559342;
 }
 /*Block support*/
-.content-support ul li{
+.block-support.block{
+	min-height: 408px;
+}
+.block-support ul li{
 	padding-bottom: 20px;
 }
-.content-support ul li:last-child{
+.block-support ul li:last-child{
 	padding-bottom: 10px;
 }
-.content-support img,
-.content-support p{
+.block-support img,
+.block-support p{
 	display: inline-block;
 	vertical-align: middle;
 	margin: 0;
 }
-.content-support p{
+.block-support p{
 	padding-left: 16px;
 	line-height: 27px;
 }
-.content-support .name{
+.block-support .name{
 	font-family: "Times New Roman";
 	font-weight: 300;
 	font-size: 21px;
 	color: #242423;
 }
-.content-support .phone{
+.block-support .phone{
 	font-family: "Times New Roman";
 	font-weight: 700;
 	font-size: 28px;
@@ -1321,18 +1363,18 @@ article  .desc-title{
 }
 .agency h3{
 	margin: 0;
-	text-align: center;
-	background: url(images/bg-daily.png) repeat-x center center;
+	background: url(images/bg-daily1.png) no-repeat center left 10px,url(images/bg-daily.png) repeat-x center center;
 	line-height: 35px;
 	color: #fff;
 	cursor: pointer;
+	font-size: 16px;
 }
 .agency h3 span{
-	font-family:"Times New Roman";
-	font-size: 18px;
-	line-height: 18px;
-	font-weight: bold;
+	font-family:"MyriadProBold";
+	font-size: 16px;
+	line-height: 16px;
 	text-transform: uppercase;
+	padding-left: 40px;
 }
 .agency h3 span::after{
 	border-color: rgb(250, 250, 250) transparent transparent ;
@@ -1541,7 +1583,7 @@ article  .desc-title{
 	
 .primary-navigation a {
 	padding: 7px 0;
-	font-family: "Times New Roman";
+	font-family: "TimesNewRomanBold";
 }
 
 /* Secondary Navigation */

@@ -521,3 +521,10 @@ require get_template_directory() . '/inc/customizer.php';
 if ( ! class_exists( 'Featured_Content' ) && 'plugins.php' !== $GLOBALS['pagenow'] ) {
 	require get_template_directory() . '/inc/featured-content.php';
 }
+function cutTitle(&$title,$maxLength){
+	if(isset($title{$maxLength})){ 
+		$title = substr($title,0,$maxLength-2);
+		$title = substr($title,0,strripos($title,' ',0));
+		$title .= ' ...';
+	}
+}
