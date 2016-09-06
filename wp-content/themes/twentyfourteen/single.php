@@ -12,6 +12,13 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
 			<?php
+				if ( !is_front_page() && !is_home() ){
+					if ( function_exists('yoast_breadcrumb') ) {
+						yoast_breadcrumb('<div id="breadcrumbs">','</div>');
+					}
+				}
+			?> 
+			<?php
 				// Start the Loop.
 				while ( have_posts() ) : the_post();
 
@@ -23,7 +30,7 @@ get_header(); ?>
 					get_template_part( 'content', get_post_format() );
 
 					// Previous/next post navigation.
-					twentyfourteen_post_nav();
+					//twentyfourteen_post_nav();
 
 					// If comments are open or we have at least one comment, load up the comment template.
 					if ( comments_open() || get_comments_number() ) {

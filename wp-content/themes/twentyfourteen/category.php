@@ -11,73 +11,50 @@
 
 get_header(); ?>
 
-	<section id="primary" class="content-area category-area">
+	<section id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
 			<?php
-				$objCat = $wp_query->get_queried_object();
-				$term_id = $objCat->term_id;
-				$hasParent = $objCat->category_parent;
-				$li = '';
-				$arr = [];
-				if(!$hasParent){
-					$taxonomy_name = 'category';
-					$termchildren = get_term_children( $term_id, $taxonomy_name );
-					foreach ( $termchildren as $child ) {
-						$term = get_term_by( 'id', $child, $taxonomy_name );
-						$li .='<li>'.$term->name.'</li>';
-						$arr[] = $term->term_id;
+				if ( !is_front_page() && !is_home() ){
+					if ( function_exists('yoast_breadcrumb') ) {
+						yoast_breadcrumb('<div id="breadcrumbs">','</div>');
 					}
-				}else{
-					$arr[]=$term_id;
-					$li = '<h2>'.$objCat->name.'</h2>';
 				}
-			?>
+			?> 
+			<?php if ( have_posts() ) : ?>
+
+			<header class="archive-header">
+				<h1 class="archive-title"><?php printf( __( '%s', 'twentyfourteen' ), single_cat_title( '', false ) ); ?></h1>
+
+				<?php
+					// Show an optional term description.
+					$term_description = term_description();
+					if ( ! empty( $term_description ) ) :
+						printf( '<div class="taxonomy-description">%s</div>', $term_description );
+					endif;
+				?>
+			</header><!-- .archive-header -->
+
 			<?php
-				$args_tab_category = array(
-					'category__in' => $arr,
-					'orderby' => 'ASC'
-				);
-				$div1 = '';$check1 = 0;
-				$div2 = '';$check2 = 0;
-				$div3 = '';$check3 = 0;
-				$args_tab_category = new WP_Query( $args_tab_category );
-				if ( $args_tab_category->have_posts()) :
 					// Start the Loop.
-					while ( $args_tab_category->have_posts() ) : $args_tab_category->the_post();
-						if(get_the_category()[0]->cat_ID == 12){
-							$div1 .= '<article class="ar-'.($check1+1).'"> <div class="content-article"><a class="post-image" href="'.get_permalink().'" title="">'. get_the_post_thumbnail().'</a> <div class="desc-title"><h3> <a href="'.get_permalink().'" title="'.get_the_title().'" >'. get_the_title() .'</a></h3><p class="desc-article">'. get_the_excerpt().'</p><a  class="more-show" href="'.get_permalink().'" title="Xem thêm">Xem thêm</a></div></div></article>';
-							$check1++;
-						}
-						if(get_the_category()[0]->cat_ID == 13){
-							$div1 .= '<article class="ar-'.($check1+1).'"> <div class="content-article"><a class="post-image" href="'.get_permalink().'" title="">'. get_the_post_thumbnail().'</a> <div class="desc-title"><h3> <a href="'.get_permalink().'" title="'.get_the_title().'" >'. get_the_title() .'</a></h3><p class="desc-article">'. get_the_excerpt().'</p><a  class="more-show" href="'.get_permalink().'" title="Xem thêm">Xem thêm</a></div></div></article>';
-							$check2++;
-						}
-						if(get_the_category()[0]->cat_ID == 14){
-							$div1 .= '<article class="ar-'.($check1+1).'"> <div class="content-article"><a class="post-image" href="'.get_permalink().'" title="">'. get_the_post_thumbnail().'</a> <div class="desc-title"><h3> <a href="'.get_permalink().'" title="'.get_the_title().'" >'. get_the_title() .'</a></h3><p class="desc-article">'. get_the_excerpt().'</p><a  class="more-show" href="'.get_permalink().'" title="Xem thêm">Xem thêm</a></div></div></article>';
-							$check3++;
-						}
+					while ( have_posts() ) : the_post();
+
+					/*
+					 * Include the post format-specific template for the content. If you want to
+					 * use this in a child theme, then include a file called called content-___.php
+					 * (where ___ is the post format) and that will be used instead.
+					 */
+					get_template_part( 'content', get_post_format() );
+
 					endwhile;
+					// Previous/next page navigation.
+					twentyfourteen_paging_nav();
+
+				else :
+					// If no content, include the "No posts found" template.
+					get_template_part( 'content', 'none' );
+
 				endif;
-				wp_reset_postdata();
 			?>
-			<div class="block block-tab-category">
-				<div class="title-block">
-					<ul class="tab-link1 tab-link">
-						<?php  echo $li; ?>
-					</ul>
-				</div>
-				<div class="content-block tab-content1 tab-content">
-					<div id="tab5" class="tab-detail active">
-						<?php if($div1 !=''){echo $div1;}else echo 'Chưa có bài viết nào'; ?>			
-					</div>
-					<div id="tab6" class="tab-detail">
-						<?php if($div2 !=''){echo $div2;}else echo 'Chưa có bài viết nào'; ?>	
-					</div>
-					<div id="tab7" class="tab-detail">
-						<?php if($div3 !=''){echo $div3;}else echo 'Chưa có bài viết nào'; ?>	
-					</div>
-				</div>
-			</div>
 		</div><!-- #content -->
 	</section><!-- #primary -->
 

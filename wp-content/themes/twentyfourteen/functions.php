@@ -528,3 +528,128 @@ function cutTitle(&$title,$maxLength){
 		$title .= ' ...';
 	}
 }
+// Custom relation post fomat
+add_filter( 'related_posts_by_taxonomy_template', 'rpbt_thumbnail_exerpt_format_template', 10, 3 );
+ 
+// Return the right template for the thumbnail_excerpt format
+function rpbt_thumbnail_exerpt_format_template( $template, $type, $format ) {
+    if ( isset( $format ) && ( 'thumbnail_excerpt' === $format ) ) {
+        return 'related-posts-thumbnail-excerpts.php';
+    }
+    return $template;
+}
+// Create new format thumbnail_excerpt for use in widget and shortcode
+add_action( 'wp_loaded', 'rpbt_thumbnail_excerpt_format', 11 );
+ 
+function rpbt_thumbnail_excerpt_format() {
+ 
+    if ( !class_exists( 'Related_Posts_By_Taxonomy_Defaults' ) ) {
+        return;
+    }
+ 
+    $defaults = Related_Posts_By_Taxonomy_Defaults::get_instance();
+ 
+    // Add the new format .
+    $defaults->formats['thumbnail_excerpt'] = __( 'Thumbnail with excerpt' );
+}
+
+// Return posts with post thumbnails for the thumbnail_excerpt format.
+add_filter( 'related_posts_by_taxonomy_shortcode_atts', 'rpbt_thumbnail_exerpt_args' ); // shortcode
+add_filter( 'related_posts_by_taxonomy_widget_args', 'rpbt_thumbnail_exerpt_args' ); // widget
+ 
+function rpbt_thumbnail_exerpt_args( $args ) {
+    if (  'thumbnail_excerpt' === $args['format'] ) {
+        $args['post_thumbnail'] = true;
+    }
+ 
+    return $args;
+}
+
+add_filter( 'the_content', 'add_related_posts_after_post_content' );
+function add_related_posts_after_post_content( $content ) {
+ 
+    //check if it's a single post page.
+    if ( is_single() ) {
+ 
+        // check if we're inside the main loop
+        if ( in_the_loop() && is_main_query() ) {
+ 
+            // add your own attributes here (between the brackets [ ... ])
+            $shortcode = '[related_posts_by_tax format="thumbnail_excerpt" posts_per_page="4" title="Các bài bài viết liên quan"]';
+ 
+            // add the shortcode after the content
+            $content = $content . $shortcode;
+        }
+    }
+ 
+    return $content;
+}
+// pageing
+function wpbeginner_numeric_posts_nav() {
+
+	if( is_singular() )
+		return;
+
+	global $wp_query;
+
+	/** Stop execution if there's only 1 page */
+	if( $wp_query->max_num_pages <= 1 )
+		return;
+
+	$paged = get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1;
+	$max   = intval( $wp_query->max_num_pages );
+
+	/**	Add current page to the array */
+	if ( $paged >= 1 )
+		$links[] = $paged;
+
+	/**	Add the pages around the current page to the array */
+	if ( $paged >= 3 ) {
+		$links[] = $paged - 1;
+		$links[] = $paged - 2;
+	}
+
+	if ( ( $paged + 2 ) <= $max ) {
+		$links[] = $paged + 2;
+		$links[] = $paged + 1;
+	}
+
+	echo '<div class="navigation"><ul>' . "\n";
+
+	/**	Previous Post Link */
+	if ( get_previous_posts_link() )
+		printf( '<li>%s</li>' . "\n", get_previous_posts_link() );
+
+	/**	Link to first page, plus ellipses if necessary */
+	if ( ! in_array( 1, $links ) ) {
+		$class = 1 == $paged ? ' class="active"' : '';
+
+		printf( '<li%s><a href="%s">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( 1 ) ), '1' );
+
+		if ( ! in_array( 2, $links ) )
+			echo '<li>…</li>';
+	}
+
+	/**	Link to current page, plus 2 pages in either direction if necessary */
+	sort( $links );
+	foreach ( (array) $links as $link ) {
+		$class = $paged == $link ? ' class="active"' : '';
+		printf( '<li%s><a href="%s">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( $link ) ), $link );
+	}
+
+	/**	Link to last page, plus ellipses if necessary */
+	if ( ! in_array( $max, $links ) ) {
+		if ( ! in_array( $max - 1, $links ) )
+			echo '<li>…</li>' . "\n";
+
+		$class = $paged == $max ? ' class="active"' : '';
+		printf( '<li%s><a href="%s">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( $max ) ), $max );
+	}
+
+	/**	Next Post Link */
+	if ( get_next_posts_link() )
+		printf( '<li>%s</li>' . "\n", get_next_posts_link() );
+
+	echo '</ul></div>' . "\n";
+
+}

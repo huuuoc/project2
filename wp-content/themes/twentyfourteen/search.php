@@ -11,7 +11,13 @@ get_header(); ?>
 
 	<section id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
-
+			<?php
+				if ( !is_front_page() && !is_home() ){
+					if ( function_exists('yoast_breadcrumb') ) {
+						yoast_breadcrumb('<div id="breadcrumbs">','</div>');
+					}
+				}
+			?> 
 			<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
@@ -27,11 +33,13 @@ get_header(); ?>
 						 * use this in a child theme, then include a file called called content-___.php
 						 * (where ___ is the post format) and that will be used instead.
 						 */
+						
 						get_template_part( 'content', get_post_format() );
 
 					endwhile;
 					// Previous/next post navigation.
-					twentyfourteen_paging_nav();
+					//twentyfourteen_paging_nav();
+					wpbeginner_numeric_posts_nav();
 
 				else :
 					// If no content, include the "No posts found" template.
