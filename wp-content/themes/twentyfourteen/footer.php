@@ -106,7 +106,7 @@
 						
 						<div class="facebook-page">
 							<div class="fb-page" 
-							  data-href="https://www.facebook.com/facebook"
+							  data-href="https://www.facebook.com/namlimxanh"
 							  data-small-header="true"
 							  data-adapt-container-width="true"
 							  data-hide-cover="false"

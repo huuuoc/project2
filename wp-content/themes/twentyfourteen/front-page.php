@@ -174,30 +174,52 @@
 				</div>
 				<div class="content-block tab-content tab-content2">
 					<div id="tab4" class="active">
-						<iframe width="100%" height="203" src="https://www.youtube.com/embed/Sy4812bvBco" frameborder="0" allowfullscreen></iframe>
+					<?php
+						$args_library = array(
+							'category__in' => array(29,30),
+							'orderby' => 'ASC'
+						);
+						$checkCat30 = 0;
+						$my_query_library = new WP_Query( $args_library );
+						if ( $my_query_library->have_posts()) :
+								while ( $my_query_library->have_posts() ) : $my_query_library->the_post();
+									
+									if(get_the_category()[0]->cat_ID == 30){
+										if($checkCat30==5){
+											break;
+										}
+										$title = get_the_title();
+										if($checkCat30 !=0){ 
+											cutTitle($title,47);
+										}
+									
+						?>
+										<article class="ar-<?php echo $checkCat30?>">
+											<?php if($checkCat30==0){twentyfourteen_post_thumbnail();}?>
+											<h3> <a title="<?php echo get_the_title()?>" href="<?php echo esc_url( get_permalink())?> " rel="bookmark"><?php echo $title ?></a></h3>
+										</article>
+						<?php
+										$checkCat30++;
+										}
+								endwhile;
+							endif;
+							wp_reset_postdata();
+						?>
 					</div>
 					<div id="tab5">
 						<?php
-							$args_grallery = array(
-								'category__in' => array(29),
-								'orderby' => 'ASC'
-							);
-							$checkFirst = 0;
-							$my_query_grallery = new WP_Query( $args_grallery );
 							$count29=0;
-							if ( $my_query_grallery->have_posts()) :
-								while ( $my_query_grallery->have_posts() ) : $my_query_grallery->the_post();
+							if ( $my_query_library->have_posts()) :
+								while ( $my_query_library->have_posts() ) : $my_query_library->the_post();
 									
 									if(get_the_category()[0]->cat_ID==29){
-										if($checkFirst==5){
+										if($count29==5){
 											break;
 										}
 									$title = get_the_title();
-									if($checkFirst !=0){ 
+									if($count29 !=0){ 
 										cutTitle($title,47);
 									}
-									$checkFirst++;
-									
 						?>
 										<article class="ar-<?php echo $count29?>">
 											<?php if($count29==0){twentyfourteen_post_thumbnail();}?>
