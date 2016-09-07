@@ -128,7 +128,7 @@
 						}
 					endwhile;
 				endif;
-				//wp_reset_postdata();
+				
 			?>
 		<div class="tab-home-page block block-tab-main">
 			<div class="title-block">

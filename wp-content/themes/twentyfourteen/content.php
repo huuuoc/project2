@@ -71,7 +71,7 @@
 		<?php else : ?>
 		<div class="entry-summary">
 			<?php the_excerpt(); ?>
-			<a class="more-show" href="<?php echo get_permalink(); ?>" title="<?php the_title(); ?>"> Xem thêm </a>
+			<p class="read-more"><a class="more-show" href="<?php echo get_permalink(); ?>" title="<?php the_title(); ?>"> Xem thêm </a></p>
 		</div><!-- .entry-summary -->
 		<?php endif; ?>
 		

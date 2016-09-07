@@ -10,9 +10,8 @@
 			var id = $(this).attr('item');
 			var tabLink = $(this).attr('tab-link');
 			var tabContent = $(this).attr('tab-content');
-			console.log(tabLink+' li.active');
 			$('.'+tabLink+' li.active').removeClass('active');
-			$('.'+tabContent+' .active').removeClass('active');
+			$('.'+tabContent+' > div.active').removeClass('active');
 			$(this).addClass('active'); 
 			$('.'+tabContent+' '+id).addClass('active'); 
 		}

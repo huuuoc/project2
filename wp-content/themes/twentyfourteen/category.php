@@ -37,7 +37,7 @@ get_header(); ?>
 						}else{
 							$class="";
 						}
-						$li .='<li class="'.$class.'" tab-link="tab-link" tab-content="tab-content" item="#tab'.$k.'">'.$term->name.'</li>';
+						$li .='<li class="'.$class.'" tab-link="tab-link3" tab-content="tab-content3" item="#tab'.$k.'">'.$term->name.'</li>';
 						$arrCatId[] = $term->term_id;
 						$k++;
 					}
@@ -55,7 +55,7 @@ get_header(); ?>
 					$$arg = array(
 						'category__in' => $arrCatId[$i],
 						'orderby' => 'ASC',
-						'posts_per_page'=>1,
+						'posts_per_page'=>2,
 						'offset'=>0
 					);
 					$$obj = new WP_Query( $$arg );
@@ -73,11 +73,11 @@ get_header(); ?>
 			?>
 			<div class="block block-tab-category">
 				<div class="title-block">
-					<ul class="tab-link1 tab-link">
+					<ul class="tab-link3 tab-link">
 						<?php  echo $li; ?>
 					</ul>
 				</div>
-				<div class="content-block tab-content1 tab-content">
+				<div class="content-block tab-content3 tab-content">
 					<?php 
 						
 						for($j=0;$j<$numCat;++$j){
@@ -94,9 +94,14 @@ get_header(); ?>
 							echo $$content;
 							$category = get_category( $arrCatId[$j]);
 							$limit = $category->category_count;
+							$numPage = ceil($limit/2);
 							echo '<ul class="custom-paging">';
-							for($p=1;$p<= $limit;$p++){
-								echo '<li page="'.$p.'" cat="'.$arrCatId[$j].'">'.$p.'</li>';
+							for($p=1;$p <= $numPage; $p++){
+								$class='';
+								if($p==1){
+									$class='active';
+								}
+								echo '<li page="'.$p.'" cat="'.$arrCatId[$j].'" class="'.$class.'">'.$p.'</li>';
 							}
 							echo '</ul>';
 							echo '</div>';
@@ -106,33 +111,6 @@ get_header(); ?>
 				</div>
 			</div>
 		</div><!-- #content -->
-		<script>
-			jQuery(document).ready( function() {
-				jQuery('.custom-paging li').click(function(){
-					var cat = jQuery(this).attr('cat');
-					var page = jQuery(this).attr('page');
-					
-					<?php ajaxPaging(); ?>
-					
-					jQuery.ajax({
-						 type : "post",
-						 dataType : "json",
-						 url : myAjax.ajaxurl,
-						 data : {action: "my_user_vote", post_id : post_id, nonce: nonce},
-						 success: function(response) {
-							if(response.type == "success") {
-							   jQuery("#vote_counter").html(response.vote_count)
-							}
-							else {
-							   alert("Your vote could not be added")
-							}
-						 }
-					})   
-					
-					
-				});
-			});
-		</script>
 	</section><!-- #primary -->
 <?php
 get_sidebar( 'content' );

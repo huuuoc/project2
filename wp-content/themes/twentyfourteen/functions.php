@@ -651,24 +651,77 @@ function wpbeginner_numeric_posts_nav() {
 		printf( '<li>%s</li>' . "\n", get_next_posts_link() );
 
 	echo '</ul></div>' . "\n";
-	function ajaxPaging($cat,$page){
-		$offset = 5*($page-1);
-		$div = '';
-		$arg = array(
-			'category__in' => $cat,
-			'orderby' => 'ASC',
-			'posts_per_page'=>1,
-			'offset'=>$offset
-		);
-		$obj = new WP_Query( $arg );
-		$check1 = 0;
-		if ( $$obj->have_posts()) :
-			// Start the Loop.
-			while ( $$obj->have_posts() ) : $$obj->the_post();
-				$div .= '<article class="ar-'.($check1+1).'"> <div class="content-article"><a class="post-image" href="'.get_permalink().'" title="">'. get_the_post_thumbnail().'</a> <div class="desc-title"><h3> <a href="'.get_permalink().'" title="'.get_the_title().'" >'. get_the_title() .'</a></h3><p class="desc-article">'. get_the_excerpt().'</p><a  class="more-show" href="'.get_permalink().'" title="Xem thêm">Xem thêm</a></div></div></article>';
-				$check1++;
-			endwhile;
-		endif;
-		return $div;
-	}
 }
+ add_action( 'wp_footer', 'dvd_action_javascript' );
+    function dvd_action_javascript() {
+        ?><script>// <![CDATA[
+		jQuery(document).ready(function($) {
+			$(document).on ( 'click', '.custom-paging li', function( event ) {
+				var liClass = $(this).attr('class');
+				if(liClass == 'active'){
+					return false;
+				}
+				$('div.active .custom-paging li.active').removeClass('active');
+				$(this).addClass('active');
+				
+				var page = $(this).attr('page');
+				var cat = $(this).attr('cat');
+				event.preventDefault();
+				// AJAX
+				$.ajax({
+					url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
+					type: 'post',
+					data: {
+							action: 'ajax_pagination',
+							cat: cat,
+							page: page
+					},
+					beforeSend: function() {
+							/*
+							 @ Tạo các hiệu ứng trước khi request gửi đi
+							 */
+							$( '.block-tab-category .tab-content .active' ).find( 'article' ).remove();
+							$('.block-tab-category .tab-content .active').scrollTop(0);
+							$('.block-tab-category .tab-content > div.active').prepend( '<div id="loading"><img src="<?php echo  wp_upload_dir('2016/09')['url']; ?>/Loading_icon.gif"  atl="Miền Bắc"/></div>' );
+					},
+					success: function( result ) {
+							/*
+							 @ Xóa nút loading
+							 @ và khôi phục lại dữ liệu trả về
+							 */
+							$( '.block-tab-category .tab-content .active' ).find( '#loading' ).remove();
+							$(  '.block-tab-category .tab-content > div.active').prepend(result);
+							
+							
+					}
+				})
+			} ) // end event
+		})
+// ]]></script><?php }
+
+add_action( 'wp_ajax_nopriv_ajax_pagination', 'ajax_pagination' );
+add_action( 'wp_ajax_ajax_pagination', 'ajax_pagination' );
+function ajax_pagination() {
+    
+	$offset = 2*($_POST['page']-1);
+	
+	$query_vars['category__in'] = $_POST['cat'];	
+	$query_vars['offset'] = $offset	;
+	$query_vars['posts_per_page'] = 2;	
+	//print_r($query_vars); exit();
+	$posts = new WP_Query( $query_vars );
+	
+	if( ! $posts->have_posts() ) { 
+        get_template_part( 'content', 'none' );
+    }
+    else {
+        while ( $posts->have_posts() ) { 
+            $posts->the_post();
+            get_template_part( 'content', get_post_format() );
+        }
+    }
+    die(); 
+}
+
+
+
