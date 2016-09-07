@@ -31,23 +31,34 @@
     // Check if size was set in widget or shortcode
     $size = isset( $rpbt_args['size'] ) ? $size : 'thumbnail';
 ?>
- 
-        <!-- post thumnail -->
-        <?php if ( has_post_thumbnail() ) : ?>
-            <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( $size ); ?></a>
-        <?php endif; ?>
- 
-        <!-- title -->
-        <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
- 
-        <!-- excerpt -->
-        <?php the_excerpt(); ?>
+	
+	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<!-- post thumnail -->
+		<?php if ( has_post_thumbnail() ) : ?>
+			<a class="post-thumbnail" href="<?php the_permalink(); ?>"><?php the_post_thumbnail( $size ); ?></a>
+		<?php endif; ?>
+		
+		<div class="detail1">
+			<header class="entry-header">
+				<!-- title -->
+				<a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
+			</header><!-- .entry-header -->
+			
+			<!-- excerpt -->
+			<?php
+				the_excerpt(); 
+				?>
+			
+			<p class="read-more"><a class="more-show" href="<?php echo get_permalink(); ?>" title="<?php the_title(); ?>"> Xem thêm </a></p>
+		</div>
+	</article><!-- #post-## -->
+	
     <?php endforeach; ?>
- 
- 
+	
 <?php else : ?>
 <p><?php _e( 'No related posts found', 'related-posts-by-taxonomy' ); ?></p>
 <?php endif ?>
+
 
 <?php
 /**

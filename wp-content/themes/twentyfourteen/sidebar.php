@@ -8,18 +8,7 @@
  */
 ?>
 <div id="secondary">
-	<?php
-	//	$description = get_bloginfo( 'description', 'display' );
-	//	if ( ! empty ( $description ) ) :
-	?>
-	<!--<h2 class="site-description"><?php echo esc_html( $description ); ?></h2>
-	<?php//  endif; ?>
-
-	<?php // if ( has_nav_menu( 'secondary' ) ) : ?>
-	<nav role="navigation" class="navigation site-navigation secondary-navigation">
-		<?php // wp_nav_menu( array( 'theme_location' => 'secondary' ) ); ?>
-	</nav>-->
-	<?php // endif; ?>
+	
 	<?php
 		$args_products = array(
 			'category__in' => array(4),
@@ -30,9 +19,6 @@
 		$my_query_products = new WP_Query( $args_products );
 	?>
 	
-	
-	
-
 	<?php //if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
 	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
 		<div class="block block-products">

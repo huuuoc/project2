@@ -176,8 +176,8 @@ function twentyfourteen_widgets_init() {
 		'description'   => __( 'Main sidebar that appears on the left.', 'twentyfourteen' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
-		'before_title'  => '<h1 class="widget-title">',
-		'after_title'   => '</h1>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
 	) );
 	register_sidebar( array(
 		'name'          => __( 'Content Sidebar', 'twentyfourteen' ),
@@ -575,10 +575,10 @@ function add_related_posts_after_post_content( $content ) {
         if ( in_the_loop() && is_main_query() ) {
  
             // add your own attributes here (between the brackets [ ... ])
-            $shortcode = '[related_posts_by_tax format="thumbnail_excerpt" posts_per_page="4" title="Các bài bài viết liên quan"]';
+            $shortcode = '[related_posts_by_tax format="thumbnail_excerpt" posts_per_page="10" title="Các bài bài viết liên quan"]';
  
             // add the shortcode after the content
-            $content = $content . $shortcode;
+            $content = $content;
         }
     }
  
@@ -651,5 +651,24 @@ function wpbeginner_numeric_posts_nav() {
 		printf( '<li>%s</li>' . "\n", get_next_posts_link() );
 
 	echo '</ul></div>' . "\n";
-
+	function ajaxPaging($cat,$page){
+		$offset = 5*($page-1);
+		$div = '';
+		$arg = array(
+			'category__in' => $cat,
+			'orderby' => 'ASC',
+			'posts_per_page'=>1,
+			'offset'=>$offset
+		);
+		$obj = new WP_Query( $arg );
+		$check1 = 0;
+		if ( $$obj->have_posts()) :
+			// Start the Loop.
+			while ( $$obj->have_posts() ) : $$obj->the_post();
+				$div .= '<article class="ar-'.($check1+1).'"> <div class="content-article"><a class="post-image" href="'.get_permalink().'" title="">'. get_the_post_thumbnail().'</a> <div class="desc-title"><h3> <a href="'.get_permalink().'" title="'.get_the_title().'" >'. get_the_title() .'</a></h3><p class="desc-article">'. get_the_excerpt().'</p><a  class="more-show" href="'.get_permalink().'" title="Xem thêm">Xem thêm</a></div></div></article>';
+				$check1++;
+			endwhile;
+		endif;
+		return $div;
+	}
 }

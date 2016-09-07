@@ -15,12 +15,7 @@
 	<?php twentyfourteen_post_thumbnail(); ?>
 	<div class="content-product">
 		<?php
-		
-			if ( is_single() ) :
-				the_title( '<h2 class="entry-title1">', '</h2>' );
-			else :
-				the_title( '<h2 class="name-product"><a title="'.get_the_title().'" href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-			endif;
+			the_title( '<h2 class="name-product"><a title="'.get_the_title().'" href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 		?>
 		<div class="type-product">
 			<?php

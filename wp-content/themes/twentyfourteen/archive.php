@@ -21,7 +21,13 @@ get_header(); ?>
 
 	<section id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
-
+			<?php
+				if ( !is_front_page() && !is_home() ){
+					if ( function_exists('yoast_breadcrumb') ) {
+						yoast_breadcrumb('<div id="breadcrumbs">','</div>');
+					}
+				}
+			?> 
 			<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">

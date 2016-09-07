@@ -31,7 +31,7 @@
 						}
 					endwhile;
 				endif;
-				wp_reset_postdata();
+				//wp_reset_postdata();
 			?>
 		</ul>
 	</div>
@@ -39,20 +39,32 @@
 	<!-- Tab home page -->
 	<div class="col-2">
 			<?php
-				$args_tab_home = array(
-					'category__in' => array(5,6,7),
+				$args_tab5 = array(
+					'category__in' => array(5),
 					'orderby' => 'ASC'
 				);
-				$my_query_tab_home = new WP_Query( $args_tab_home );
-				if ( $my_query_tab_home->have_posts()) :
+				$my_query_tab5 = new WP_Query($args_tab5);
+				
+				$args_tab6 = array(
+					'category__in' => array(6),
+					'orderby' => 'ASC'
+				);
+				$my_query_tab6 = new WP_Query( $args_tab6 );
+				
+				$args_tab7 = array(
+					'category__in' => array(7),
+					'orderby' => 'ASC'
+				);
+				$my_query_tab7 = new WP_Query( $args_tab7 );
+				
+				
+				
+				if ( $my_query_tab5->have_posts()) :
 					// Start the Loop.
 					$li1 = '';
-					$li2 = '';
-					$li3 = '';
-					$div1 = '';$check1 = 0;
-					$div2 = '';$check2 = 0;
-					$div3 = '';$check3 = 0;
-					while ( $my_query_tab_home->have_posts() ) : $my_query_tab_home->the_post();
+					$div1 = '';
+					$check1 = 0;
+					while ( $my_query_tab5->have_posts() ) : $my_query_tab5->the_post();
 						$title = get_the_excerpt();
 						if(get_the_category()[0]->cat_ID == 5){
 							if($check1 == 5){
@@ -67,6 +79,16 @@
 							$div1 .= '<article class="ar-'.($check1+1).'"> <div class="content-article"><a class="post-image" href="'.get_permalink().'" title="">'. get_the_post_thumbnail().'</a> <div class="desc-title"><h3> <a href="'.get_permalink().'" title="'.get_the_title().'" >'.$title.'</a></h3><p class="desc-article">'. $title.'</p><a  class="more-show" href="'.get_permalink().'" title="Xem thêm">Xem thêm</a></div></div></article>';
 							$check1++;
 						}
+					endwhile;
+				endif;
+				
+				if ( $my_query_tab6->have_posts()) :
+					// Start the Loop.
+					$li2 = '';
+					$div2 = '';
+					$check2 = 0;
+					while ( $my_query_tab6->have_posts() ) : $my_query_tab6->the_post();
+						$title = get_the_excerpt();
 						if(get_the_category()[0]->cat_ID == 6){
 							if($check2 == 5){
 								continue;
@@ -81,6 +103,16 @@
 							$div2 .= '<article class="ar-'.($check2+1).'"> <div class="content-article"><a class="post-image" href="'.get_permalink().'" title="">'. get_the_post_thumbnail().'</a><div class="desc-title"> <h3><a href="'.get_permalink().'" title="'.get_the_title().'">'.get_the_title().'</a></h3><p class="desc-article">'. $title.'</p><a class="more-show" href="'.get_permalink().'" title="Xem thêm">Xem thêm</a></div></div></article>';
 							$check2++;
 						}
+					endwhile;
+				endif;
+				
+				if ( $my_query_tab7->have_posts()) :
+					// Start the Loop.
+					$li3 = '';
+					$div3 = '';
+					$check3 = 0;
+					while ( $my_query_tab7->have_posts() ) : $my_query_tab7->the_post();
+						$title = get_the_excerpt();
 						if(get_the_category()[0]->cat_ID == 7){
 							if($check2 == 5){
 								continue;
@@ -90,14 +122,13 @@
 								cutTitle($title,86);
 							}else{
 								cutTitle($title,65);
-								$title="ccccccc";
 							}
 							$div3 .= '<article class="ar-'.($check3+1).'"> <div class="content-article"><a class="post-image" href="'.get_permalink().'" title="">'. get_the_post_thumbnail() .'</a><div class="desc-title"><h3><a href="'.get_permalink().'" title="'.get_the_title().'">'.get_the_title().'</a></h3><p class="desc-article">'. $title.'</p><a class="more-show" href="'.get_permalink().'" title="Xem thêm">Xem thêm</a></div></div></article>';
 							$check3++;
 						}
 					endwhile;
 				endif;
-				wp_reset_postdata();
+				//wp_reset_postdata();
 			?>
 		<div class="tab-home-page block block-tab-main">
 			<div class="title-block">
@@ -159,7 +190,7 @@
 								}
 							endwhile;
 						endif;
-						wp_reset_postdata();
+						//wp_reset_postdata();
 					?>
 				</div>
 			</div>
@@ -203,7 +234,7 @@
 										}
 								endwhile;
 							endif;
-							wp_reset_postdata();
+							//wp_reset_postdata();
 						?>
 					</div>
 					<div id="tab5">
@@ -230,7 +261,7 @@
 									}
 								endwhile;
 							endif;
-							wp_reset_postdata();
+							//wp_reset_postdata();
 						?>
 					</div>
 				</div>
