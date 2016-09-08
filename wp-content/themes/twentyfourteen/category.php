@@ -55,7 +55,7 @@ get_header(); ?>
 					$$arg = array(
 						'category__in' => $arrCatId[$i],
 						'orderby' => 'ASC',
-						'posts_per_page'=>2,
+						'posts_per_page'=>10,
 						'offset'=>0
 					);
 					$$obj = new WP_Query( $$arg );
@@ -79,7 +79,6 @@ get_header(); ?>
 				</div>
 				<div class="content-block tab-content3 tab-content">
 					<?php 
-						
 						for($j=0;$j<$numCat;++$j){
 							$content = 'div'.$j;
 							if($$content==''){
@@ -94,18 +93,20 @@ get_header(); ?>
 							echo $$content;
 							$category = get_category( $arrCatId[$j]);
 							$limit = $category->category_count;
-							$numPage = ceil($limit/2);
-							echo '<ul class="custom-paging">';
-							for($p=1;$p <= $numPage; $p++){
-								$class='';
-								if($p==1){
-									$class='active';
+							$numPage = ceil($limit/10);
+							if($numPage > 1){
+								echo '<ul class="custom-paging">';
+								for($p=1;$p <= $numPage; $p++){
+									$class='';
+									if($p==1){
+										$class='active';
+									}
+									echo '<li page="'.$p.'" cat="'.$arrCatId[$j].'" class="'.$class.'">'.$p.'</li>';
 								}
-								echo '<li page="'.$p.'" cat="'.$arrCatId[$j].'" class="'.$class.'">'.$p.'</li>';
+								echo '</ul>';
+								
 							}
-							echo '</ul>';
 							echo '</div>';
-							
 						}
 					?>
 				</div>
