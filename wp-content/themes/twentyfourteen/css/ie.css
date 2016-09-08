@@ -1,4 +1,4 @@
-/**
+ /**
  * Global Styles for older IE versions (previous to IE9).
  */
 
@@ -363,6 +363,7 @@ a.post-thumbnail:hover {
 	margin: 0 1px 0 -10px;
 	padding: 0;
 	text-transform: uppercase;
+	background: #4f6426;
 }
 
 .ie8 .primary-navigation .menu-toggle {

@@ -703,11 +703,11 @@ add_action( 'wp_ajax_nopriv_ajax_pagination', 'ajax_pagination' );
 add_action( 'wp_ajax_ajax_pagination', 'ajax_pagination' );
 function ajax_pagination() {
     
-	$offset = 2*($_POST['page']-1);
+	$offset = 10*($_POST['page']-1);
 	
 	$query_vars['category__in'] = $_POST['cat'];	
 	$query_vars['offset'] = $offset	;
-	$query_vars['posts_per_page'] = 2;	
+	$query_vars['posts_per_page'] = 10;	
 	//print_r($query_vars); exit();
 	$posts = new WP_Query( $query_vars );
 	
@@ -723,5 +723,15 @@ function ajax_pagination() {
     die(); 
 }
 
+/**
+ * Filter the except length to 20 characters.
+ *
+ * @param int $length Excerpt length.
+ * @return int (Maybe) modified excerpt length.
+ */
+function wpdocs_custom_excerpt_length( $length ) {
+    return 20;
+}
+add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
 
 

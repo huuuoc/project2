@@ -11,6 +11,12 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<?php
+		if (is_front_page() && is_home() ){
+			echo '<div class="home-tab-main">';	
+		}
+	?>
+		
 	<?php if ( !is_single() ){ twentyfourteen_post_thumbnail(); }  ?>
 	<div class="detail">
 		<header class="entry-header">
@@ -27,6 +33,11 @@
 					the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 				endif;
 			?>
+			<?php
+				if (is_front_page() && is_home() ): ?>
+				<p class="read-more"><a class="more-show" href="<?php echo get_permalink(); ?>" title="<?php the_title(); ?>"> Xem thêm </a></p>
+			<?php endif ?>
+			
 			
 			<div class="entry-meta">
 				<?php
@@ -76,4 +87,10 @@
 		<?php endif; ?>
 		
 	</div>
+	<?php
+		if (is_front_page() && is_home() ){
+			echo '</div>';
+		}
+	?>
+	
 </article><!-- #post-## -->
